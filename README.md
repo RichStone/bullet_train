@@ -22,13 +22,13 @@ If you're building a new application with Bullet Train, you don't want to "Fork"
     bin/configure
     bin/setup
     ```
-    
+
 4. Boot your application:
 
     ```
     bin/dev
     ```
-    
+
 5. Visit `http://localhost:3000`.
 
 ## Cloud Development with Gitpod
@@ -56,9 +56,12 @@ You can use this public repository to provision a new application and then push 
 
 ### Render
 
+*(the button link will change during the `bin/configure` BT setup step to something like https://render.com/deploy?repo=https://github.com/YOUR_GITHUB_HANDLE/YOUR_REPO_NAME)*
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/bullet-train-co/bullet_train)
 
 Clicking this button will take you to the first step of a process that, when completed, will provision production-grade infrastructure for your Bullet Train application which will cost about **$30/month**.
+
+Also possible for close to 0$ to get started.
 
 When you're done deploying to Render, you need to go into "Dashboard" > "web", copy the server URL, and then go into "Env Groups" > "settings" and paste the URL into the value for `BASE_URL`.
 
