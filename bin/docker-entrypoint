@@ -1,0 +1,19 @@
+#!/bin/bash -ex
+
+echo "🚀 THIS IS RUNNING..."
+
+# Enable jemalloc for reduced memory usage and latency.
+if [ -z "${LD_PRELOAD+x}" ]; then
+    echo "🚀 JEMALLOC..."
+    LD_PRELOAD=$(find /usr/lib -name libjemalloc.so.2 -print -quit)
+    export LD_PRELOAD
+fi
+
+# If running the rails server then create or migrate existing database
+# This errors: ./bin/docker-entrypoint: line 13: [: ==: unary operator expected
+#if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+echo "🚀 DB PREPARE..."
+./bin/rails db:prepare
+#fi
+
+exec "${@}"

@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require "#{__dir__}/utils"
+
+announce_section "Add a 'Deploy to Kamal' instructions?"
+
+instructions_file = "#{__dir__}/deploy-instructions/kamal.md"
+
+add_instructions = ask_boolean "Would you like to add Kamal deploy instructions to your project.", "y"
+if add_instructions
+  # TODO: We could prompt here for IP, docker hub username, etc.
+  File.open("README.md", "a") do |readme|
+    instruction = File.read(instructions_file)
+    instruction.each_line do |line|
+      readme << line
+    end
+  end
+else
+  puts "Not adding a 'Deploy to Kamal' instructions.".yellow
+end
