@@ -90,6 +90,5 @@ production:
   database: bubba_production
   username: bubba
   password: <%= ENV['BUBBA_DATABASE_PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
-#  host: <%#= ENV["DB_HOST"] %> # For Kamal deployments *instead of url*.
-#  port: <%#= ENV["DB_PORT"] %> # For Kamal deployments *instead of url*.
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>

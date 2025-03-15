@@ -10,16 +10,15 @@
 service: bubba
 
 # Name of the container image.
-# FIXME: Change this to your Docker Hub username.
-image: docker-hub-username/bubba
+image: richwhale/bubba
 
 # Deploy to these servers.
 servers:
   web:
-    - 999.999.999.999 # FIXME: The IP address of the server you can SSH into.
+    - 157.180.26.31
   job:
     hosts:
-      - 999.999.999.999 # FIXME: The IP address of the server you can SSH into.
+      - 157.180.26.31
     cmd: bundle exec sidekiq
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on
@@ -30,14 +29,14 @@ servers:
 # enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.yoursaas.com # FIXME: The domain you want to use for your app. You need to create a CNAME record that points to the IP address of the server you can SSH into.
+  host: bubba.socialgames.cc
   app_port: 3000
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: docker-hub-username # FIXME: The username you use to log into Docker Hub.
+  username: richwhale
   # Always use an access token rather than real password (pulled from .kamal/secrets).
   password:
     - KAMAL_REGISTRY_PASSWORD
@@ -82,7 +81,7 @@ aliases:
 accessories:
   db:
     image: postgres:14 # TODO: How to sync this with Dockerfile and Rails app.
-    host: 999.999.999.999 # FIXME: The IP address of the server you can SSH into.
+    host: 157.180.26.31
     port: "127.0.0.1:5432:5432" # Change this for multiple Postgres containers in the same machine. This port is not exposed to Internet (https://rameerez.com/kamal-tutorial-how-to-deploy-a-postgresql-rails-app/#:~:text=We%20do%20not%20expose%20the%20PostgreSQL%20database%20to%20the%20internet.%20We%20achieve%20this%20by%20linking%20the%20server%E2%80%99s%20internal)
     env:
       clear:
