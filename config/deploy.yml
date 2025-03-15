@@ -7,11 +7,11 @@
 #   - You have a domain name that you own and will point to your server's IP address.
 #
 # Name of your application. Used to uniquely configure containers.
-service: untitled-application
+service: bubba
 
 # Name of the container image.
 # FIXME: Change this to your Docker Hub username.
-image: docker-hub-username/untitled-application
+image: docker-hub-username/bubba
 
 # Deploy to these servers.
 servers:
@@ -54,14 +54,14 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - POSTMARK_API_TOKEN # FIXME: Keep it or remove it and change the email provider. Keeping it will enable Postmark for email delivery.
-    - UNTITLED_APPLICATION_DATABASE_PASSWORD
+    - BUBBA_DATABASE_PASSWORD
     - REDIS_PASSWORD
   clear:
-    DB_HOST: untitled-application-db
-    POSTGRES_USER: untitled_application
-    POSTGRES_DB: untitled_application_production
+    DB_HOST: bubba-db
+    POSTGRES_USER: bubba
+    POSTGRES_DB: bubba_production
     DB_PORT: 5432 # Use 5432 regardless of what `localhost` port you expose below (https://rameerez.com/kamal-tutorial-how-to-deploy-a-postgresql-rails-app/).
-    REDIS_HOST: untitled-application-redis
+    REDIS_HOST: bubba-redis
     REDIS_PORT: 6379
     HIDE_THINGS: "true"
     KAMAL_SETUP: "true"
@@ -86,10 +86,10 @@ accessories:
     port: "127.0.0.1:5432:5432" # Change this for multiple Postgres containers in the same machine. This port is not exposed to Internet (https://rameerez.com/kamal-tutorial-how-to-deploy-a-postgresql-rails-app/#:~:text=We%20do%20not%20expose%20the%20PostgreSQL%20database%20to%20the%20internet.%20We%20achieve%20this%20by%20linking%20the%20server%E2%80%99s%20internal)
     env:
       clear:
-        POSTGRES_USER: untitled_application
-        POSTGRES_DB: untitled_application_production
+        POSTGRES_USER: bubba
+        POSTGRES_DB: bubba_production
       secret:
-        - UNTITLED_APPLICATION_DATABASE_PASSWORD
+        - BUBBA_DATABASE_PASSWORD
     directories:
       - data:/var/lib/postgresql/data
   redis:
